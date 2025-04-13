@@ -7,7 +7,7 @@ I'm a passionate **Frontend Developer** who loves crafting clean and responsive 
 - 🔭 Currently working on personal frontend projects to sharpen my skills
 - 🌱 Learning more about performance optimization and accessibility
 - 💬 Ask me about JavaScript, React, CSS, or anything frontend!
-- 📫 How to reach me: [email@example.com](mailto:email@example.com)
+- 📫 How to reach me: [email@example.com](mailto:uahahhsueyyww@gmail.com)
 - ⚡ Fun fact: I can spend hours tweaking UI details most people don’t even notice 😄
 
 ## 🛠️ Tech Stack
