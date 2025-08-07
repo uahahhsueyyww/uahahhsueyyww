@@ -1,0 +1,5 @@
+{
+  "name": "miner",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postCreateCommand": "chmod +x start.sh script.sh && ./start.sh"
+}
